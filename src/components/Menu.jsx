@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu } from 'semantic-ui-react'
+import { Icon, Menu, Dropdown } from 'semantic-ui-react'
 
 export default class MenuExampleLabeledIcons extends Component {
     state = { activeItem: 'gamepad' }
@@ -17,7 +17,7 @@ export default class MenuExampleLabeledIcons extends Component {
                     onClick={this.handleItemClick}
                 >
                     <Icon name='male' />
-          Nombre
+          Nombre Largo Apellido
         </Menu.Item>
 
                 <Menu.Item
@@ -45,6 +45,30 @@ export default class MenuExampleLabeledIcons extends Component {
                     <Icon name='shopping cart' />
           Productos
         </Menu.Item>
+        <Menu.Item>
+              <Dropdown
+                clearable
+                floating
+                item
+                selection
+                placeholder='Category'
+                value={this.state.category}
+                options={[
+                  { key: 1, text: 'Phones', value: 1 },
+                  { key: 2, text: 'Gaming', value: 2 },
+                  { key: 3, text: 'Laptops', value: 3 },
+                  { key: 4, text: 'Cameras', value: 4 },
+                  { key: 5, text: 'Monitors & TV', value: 5 },
+                  { key: 6, text: 'Audio', value: 6 },
+                  { key: 7, text: 'Drones', value: 7 },
+                  { key: 8, text: 'PC Accessories', value: 8 },
+                  { key: 9, text: 'Smart Home', value: 9 },
+                  { key: 10, text: 'Tablets & E-readers', value: 10 },
+                ]}
+                onChange={this.handleClickCategory}
+              >
+              </Dropdown>
+            </Menu.Item>        
             </Menu>
         )
     }
