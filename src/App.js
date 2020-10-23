@@ -17,6 +17,7 @@ function App() {
       <Menu
         category={category}
         points={points}
+        page={page}
         setPoints={setPoints}
         setCategory={setCategory}
         setPage={setPage}

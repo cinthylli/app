@@ -55,33 +55,48 @@ export const MenuExampleSecondary = (props) => {
                 </Dropdown>
             </Menu.Item>
             <Menu.Menu position='right'>
-                <Menu.Item position="right">
-                    <Dropdown
-                        clearable
-                        floating
-                        item
-                        selection
-                        placeholder='Category'
-                        value={props.category}
-                        options={optionsCategory}
-                        onChange={handleCategory}
-                    >
-                    </Dropdown>
-                </Menu.Item>
-                <Menu.Item
-                    name='list'
-                    onClick={() => { props.setPage("Historico") }}
-                >
-                    <Icon name='list' />
-                    Historico
-                </Menu.Item>
+
+                {
+                    props.page === "Historico" ?
+                        <h1></h1>
+                        :
+                        <Menu.Item position="right">
+                            <Dropdown
+                                clearable
+                                floating
+                                item
+                                selection
+                                placeholder='Category'
+                                value={props.category}
+                                options={optionsCategory}
+                                onChange={handleCategory}
+                            >
+                            </Dropdown>
+                        </Menu.Item>
+
+
+                }
                 <Menu.Item
                     name='shopping cart'
-                    onClick={() => { props.setPage("Home") }}
+                    onClick={() => {
+                        props.setPage("Home")
+                        props.setCategory("")
+                    }}
                 >
                     <Icon name='shopping cart' />
                     Productos
                 </Menu.Item>
+                <Menu.Item
+                    name='list'
+                    onClick={() => {
+                        props.setPage("Historico")
+                        props.setCategory("")
+                    }}
+                >
+                    <Icon name='list' />
+                    Historico
+                </Menu.Item>
+
             </Menu.Menu>
         </Menu>
     </>
