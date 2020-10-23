@@ -7,13 +7,11 @@ import useFetchUser from '../hooks/useFetchUser';
 
 export const MenuExampleSecondary = (props) => {
 
-    const [inputValue, setInputValue] = useState("");
     const { data: user } = useFetchUser(props.points);
     const { name, points: userPoints } = user;
     useEffect(() => {
         props.setPoints(userPoints);
-
-    }, [])
+    }, [userPoints])
 
 
     const handlePoints = async (e, { value }) => {
@@ -24,12 +22,7 @@ export const MenuExampleSecondary = (props) => {
 
     const handleCategory = (e, { value }) => {
         props.setCategory(optionsCategory[value - 1]?.text);
-
     }
-
-    const handleInputValue = (e => {
-        setInputValue(e.target.value)
-    })
 
     return (<>
 
@@ -76,14 +69,17 @@ export const MenuExampleSecondary = (props) => {
                 </Menu.Item>
                 <Menu.Item
                     name='list'
+                    onClick={()=>{console.log("list");}}
                 >
                     <Icon name='list' />
           Historico
         </Menu.Item>
                 <Menu.Item
                     name='shopping cart'
+                    onClick={()=>{console.log("shop");}}
                 >
                     <Icon name='shopping cart' />
+                    
           Productos
         </Menu.Item>
 

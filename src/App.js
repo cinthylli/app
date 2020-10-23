@@ -18,7 +18,7 @@ function App() {
         setCategory={setCategory}
       />
       <header className="App-header">
-        <h1>Mi App </h1>
+        <h1>{category}</h1>
 
       </header>
     </div>
