@@ -19,7 +19,6 @@ function App() {
       />
       <header className="App-header">
         <h1>{category}</h1>
-
       </header>
     </div>
   );

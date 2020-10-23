@@ -26,7 +26,7 @@ export const MenuExampleSecondary = (props) => {
 
     return (<>
 
-        <Menu inverted color="teal" icon="labeled">
+        <Menu inverted color="teal" icon="labeled" style={{margin: 0}} >
             <Menu.Item
                 name='male'
             >
