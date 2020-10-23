@@ -37,6 +37,14 @@ export default class MenuExampleLabeledIcons extends Component {
                     <Icon name='list' />
           Historico
         </Menu.Item>
+                <Menu.Item
+                    name='shopping cart'
+                    active={activeItem === 'shopping cart'}
+                    onClick={this.handleItemClick}
+                >
+                    <Icon name='shopping cart' />
+          Productos
+        </Menu.Item>
             </Menu>
         )
     }
