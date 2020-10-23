@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import Menu from './components/Menu.jsx'
+import Products from './components/Products.jsx'
 
 function App() {
 
@@ -20,8 +21,12 @@ function App() {
         setPage={setPage}
       />
       <header className="App-header">
-        <h1>{category}</h1>
-        <h2>{page}</h2>
+
+
+        <Products
+          category={category}
+          points={points}
+        />
       </header>
     </div>
   );
