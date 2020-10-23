@@ -24,9 +24,10 @@ export const MenuExampleSecondary = (props) => {
         props.setCategory(optionsCategory[value - 1]?.text);
     }
 
+
     return (<>
 
-        <Menu inverted color="teal" icon="labeled" style={{margin: 0}} >
+        <Menu inverted color="teal" icon="labeled" style={{ margin: 0 }} >
             <Menu.Item
                 name='male'
             >
@@ -69,20 +70,18 @@ export const MenuExampleSecondary = (props) => {
                 </Menu.Item>
                 <Menu.Item
                     name='list'
-                    onClick={()=>{console.log("list");}}
+                    onClick={() => { props.setPage("Historico") }}
                 >
                     <Icon name='list' />
-          Historico
-        </Menu.Item>
+                    Historico
+                </Menu.Item>
                 <Menu.Item
                     name='shopping cart'
-                    onClick={()=>{console.log("shop");}}
+                    onClick={() => { props.setPage("Home") }}
                 >
                     <Icon name='shopping cart' />
-                    
-          Productos
-        </Menu.Item>
-
+                    Productos
+                </Menu.Item>
             </Menu.Menu>
         </Menu>
     </>
