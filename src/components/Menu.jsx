@@ -1,75 +1,95 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Icon, Menu, Dropdown } from 'semantic-ui-react'
+import { optionAddCoins, optionsCategory } from '../constants/menuConstants'
+import { addPoints } from '../helpers/addPoints';
+import useFetchUser from '../hooks/useFetchUser';
 
-export default class MenuExampleLabeledIcons extends Component {
-    state = { activeItem: 'gamepad' }
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+export const MenuExampleSecondary = (props) => {
 
-    render() {
-        const { activeItem } = this.state
+    const [inputValue, setInputValue] = useState("");
+    const { data: user } = useFetchUser(props.points);
+    const { name, points: userPoints } = user;
+    useEffect(() => {
+        props.setPoints(userPoints);
 
-        return (
-            <Menu icon='labeled'>
-                <Menu.Item
-                    name='male'
-                    active={activeItem === 'male'}
-                    onClick={this.handleItemClick}
+    }, [])
+
+
+    const handlePoints = async (e, { value }) => {
+
+        let pointsset = await addPoints({ pts: value });
+        props.setPoints(pointsset);
+    }
+
+    const handleCategory = (e, { value }) => {
+        props.setCategory(optionsCategory[value - 1]?.text);
+
+    }
+
+    const handleInputValue = (e => {
+        setInputValue(e.target.value)
+    })
+
+    return (<>
+
+        <Menu inverted color="teal" icon="labeled">
+            <Menu.Item
+                name='male'
+            >
+                <Icon name='male' />
+                {name}
+            </Menu.Item>
+            <Menu.Item
+                name='money bill alternate outline'
+            >
+                <Icon name='money bill alternate outline' />
+                {props.points}
+            </Menu.Item>
+
+            <Menu.Item>
+                <Dropdown
+                    clearable
+                    floating
+                    item
+                    selection
+                    placeholder='Add Points'
+                    value={props.points}
+                    options={optionAddCoins}
+                    onChange={handlePoints}
                 >
-                    <Icon name='male' />
-          Nombre Largo Apellido
-        </Menu.Item>
-
-                <Menu.Item
-                    name='money bill alternate outline'
-                    active={activeItem === 'money bill alternate outline'}
-                    onClick={this.handleItemClick}
-                >
-                    <Icon name='money bill alternate outline' />
-          Monedas
-        </Menu.Item>
-
+                </Dropdown>
+            </Menu.Item>
+            <Menu.Menu position='right'>
+                <Menu.Item position="right">
+                    <Dropdown
+                        clearable
+                        floating
+                        item
+                        selection
+                        placeholder='Category'
+                        value={props.category}
+                        options={optionsCategory}
+                        onChange={handleCategory}
+                    >
+                    </Dropdown>
+                </Menu.Item>
                 <Menu.Item
                     name='list'
-                    active={activeItem === 'list'}
-                    onClick={this.handleItemClick}
                 >
                     <Icon name='list' />
           Historico
         </Menu.Item>
                 <Menu.Item
                     name='shopping cart'
-                    active={activeItem === 'shopping cart'}
-                    onClick={this.handleItemClick}
                 >
                     <Icon name='shopping cart' />
           Productos
         </Menu.Item>
-        <Menu.Item>
-              <Dropdown
-                clearable
-                floating
-                item
-                selection
-                placeholder='Category'
-                value={this.state.category}
-                options={[
-                  { key: 1, text: 'Phones', value: 1 },
-                  { key: 2, text: 'Gaming', value: 2 },
-                  { key: 3, text: 'Laptops', value: 3 },
-                  { key: 4, text: 'Cameras', value: 4 },
-                  { key: 5, text: 'Monitors & TV', value: 5 },
-                  { key: 6, text: 'Audio', value: 6 },
-                  { key: 7, text: 'Drones', value: 7 },
-                  { key: 8, text: 'PC Accessories', value: 8 },
-                  { key: 9, text: 'Smart Home', value: 9 },
-                  { key: 10, text: 'Tablets & E-readers', value: 10 },
-                ]}
-                onChange={this.handleClickCategory}
-              >
-              </Dropdown>
-            </Menu.Item>        
-            </Menu>
-        )
-    }
+
+            </Menu.Menu>
+        </Menu>
+    </>
+    )
 }
+export default MenuExampleSecondary;
