@@ -3,6 +3,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import Menu from './components/Menu.jsx'
 import Products from './components/Products.jsx'
+import Historico from './components/Historico.jsx'
 
 function App() {
 
@@ -22,11 +23,17 @@ function App() {
       />
       <header className="App-header">
 
-
-        <Products
+        {
+          page == "Home" ? 
+          <Products
           category={category}
           points={points}
-        />
+            /> : 
+            <Historico
+                points={points}
+            />
+        }
+        
       </header>
     </div>
   );
