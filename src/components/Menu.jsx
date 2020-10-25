@@ -84,7 +84,7 @@ export const MenuExampleSecondary = (props) => {
                     }}
                 >
                     <Icon name='shopping cart' />
-                    Productos
+                    Products
                 </Menu.Item>
                 <Menu.Item
                     name='list'
@@ -94,7 +94,7 @@ export const MenuExampleSecondary = (props) => {
                     }}
                 >
                     <Icon name='list' />
-                    Historico
+                    Historic
                 </Menu.Item>
 
             </Menu.Menu>

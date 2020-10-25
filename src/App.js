@@ -25,7 +25,7 @@ function App() {
       <header className="App-header">
 
         {
-          page == "Home" ? 
+          page === "Home" ? 
           <Products
           category={category}
           points={points}

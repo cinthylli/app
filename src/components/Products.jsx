@@ -18,7 +18,7 @@ function Products({ category ,  points }) {
 
     return (
         <>
-            <h1>{category || "Productos"}</h1>
+            <h1>{category || "Products"}</h1>
             {loading && "cargando....."}
             <section>
                 {
