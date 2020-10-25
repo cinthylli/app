@@ -17,9 +17,12 @@ function ModalExampleDimmer({
     frontMessageButtom,
     cost,
     backMessageButtom,
-    title,
-    content,
-    buttomText
+    titleSuccess,
+    contentSuccess,
+    titleFail,
+    contentFail,
+    buttonText,
+    status
 
 }) {
     const [state, dispatch] = React.useReducer(exampleReducer, {
@@ -43,17 +46,34 @@ function ModalExampleDimmer({
                 open={open}
                 onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
             >
-                <Modal.Header>{title}</Modal.Header>
-                <Modal.Content>
-                    {content}
-        </Modal.Content>
+                {
+                    status === true ?
+                        <>
+                            <Modal.Header>{titleSuccess}</Modal.Header>
+                            <Modal.Content>
+                                {contentSuccess}
+                            </Modal.Content>
+                        </>
+                        :
+                        <>
+                            <Modal.Header>{titleFail}</Modal.Header>
+                            <Modal.Content>
+                                {contentFail}
+                            </Modal.Content>
+                        </>
+                }
                 <Modal.Actions>
-                    <Button positive onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
-                        {buttomText}
-                    </Button>
-                    <Button negative onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
-                        {buttomText}
-                    </Button>
+                    {
+                        status === true
+                            ?
+                            <Button positive onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
+                                {buttonText}
+                            </Button>
+                            :
+                            <Button negative onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
+                                {buttonText}
+                            </Button>
+                    }
                 </Modal.Actions>
             </Modal>
         </div>

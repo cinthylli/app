@@ -20,9 +20,12 @@ const CardProduct = ({ product, category, pointsLeft, cost, img, _id }) => (
                         frontMessageButtom="Just"
                         cost={cost}
                         backMessageButtom="Redeem it!"
-                        title="SUCESS!"
-                        content="Your purchase was successfully approved "
+                        titleSuccess="SUCESS!"
+                        contentSuccess="Your purchase was successfully approved "
+                        titleFail="TRY AGAIN!"
+                        contentFail="Your purchase has problems, please contact us, to provide more information."
                         buttonText="Thanks"
+                        status={true}
                         onActionClick={() => {
                        //     redeemPoints({ productId: _id });
                             console.log("redimiendo")
