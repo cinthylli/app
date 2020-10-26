@@ -9,6 +9,15 @@ export default function Historical({ points }) {
 
     }, [points])
 
+    const styleSection = {
+        display: "flex",
+        flexWrap: "wrap",
+        
+    }
+
+    const styleCard = {
+        margin: "10px"
+    }
     const getHistoric = async () => {
         const url = 'https://coding-challenge-api.aerolab.co/user/history';
         const bearer = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjk1ZThhNzUyNDk2NzAwMTlhMTBlYjIiLCJpYXQiOjE2MDM2NTk5NDN9.DapzljGWaSJ7t3EdgRncEn_zEGQCXx0mJDswyHbKZfQ`;
@@ -28,14 +37,14 @@ export default function Historical({ points }) {
 
     return (
         <>
-
-            <Card>
-              
-                <Card.Content>
-                    <Feed>
+        <h1>Historic</h1>
+        <div style={ styleSection} >
+    
+           
                         {
-                            historic.map((product) => {
-                                return (
+                historic.map((product) => {
+                    return (
+                        <div style={ styleCard}>
                                         <Card
                                             centered
                                             color="violet"
@@ -47,13 +56,14 @@ export default function Historical({ points }) {
                                             </Card.Content>
                                             <Card.Content extra>
                                             </Card.Content>
-                                        </Card>                                       
+                                        </Card>  
+                                    </div>
                                 )
                             })
                         }
-                    </Feed>
-                </Card.Content>
-            </Card>
-        </>
+                 
+                
+            </ div >
+            </>
     )
 }
