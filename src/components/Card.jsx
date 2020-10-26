@@ -2,7 +2,7 @@ import React from 'react'
 import {  Card, Image } from 'semantic-ui-react'
 import ButtonAnimated from './Button'
 import Modal from './Modal'
-const CardProduct = ({ product, category, pointsLeft, cost, img, id }) => (
+const CardProduct = ({ product, category, pointsLeft, cost, img, id, setPoints }) => (
     <Card
     
         centered
@@ -28,6 +28,7 @@ const CardProduct = ({ product, category, pointsLeft, cost, img, id }) => (
                         status={true}
                         productId={id}
                         points={pointsLeft}
+                        setPoints={setPoints}
                     /> 
                     :
                  <ButtonAnimated amount={cost - pointsLeft} frontMessage='Need ' backMessage='Bring them!' _id />

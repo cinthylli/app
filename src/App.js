@@ -28,7 +28,8 @@ function App() {
           page === "Home" ? 
           <Products
           category={category}
-          points={points}
+              points={points}
+              setPoints={setPoints}
             /> : 
             <Historic
                 points={points}

@@ -14,7 +14,7 @@ export default function useFetchUser(points) {
                 loading: false
             })
         })
-    }, [points])
+    }, )
     
     return state;
 }

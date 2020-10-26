@@ -23,7 +23,7 @@ function ModalExampleDimmer({
     contentFail,
     buttonText,
     status,
-    productId, points
+    productId, points,
 
 }) {
     const [state, dispatch] = React.useReducer(exampleReducer, {
@@ -33,8 +33,8 @@ function ModalExampleDimmer({
     const { open, dimmer } = state
     // let message = "hola"
     const [shouldFetch, setShouldFetch] = useState(false);
-    let  message  =  useRedeemProducts({ productId: productId, points: points, cost: cost, shouldFetch: shouldFetch });
-     console.log(message);
+    let message = useRedeemProducts({ productId: productId, points: points, cost: cost, shouldFetch: shouldFetch });
+  
 
     return (
         <div>

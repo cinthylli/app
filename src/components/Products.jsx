@@ -4,7 +4,7 @@ import Card from '../components/Card'
 import useFetchProducts from '../hooks/useFetchProducts';
 
 
-function Products({ category, points }) {
+function Products({ category, points,setPoints }) {
 
     const { data: products, loading } = useFetchProducts("");
 
@@ -36,6 +36,7 @@ function Products({ category, points }) {
                                 img={product.img.url}
                                 id={product._id}
                                 key={product._id}
+                                setPoints={setPoints}
                             />
                         )
                     })
