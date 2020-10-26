@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
-// import { redeemPoints } from '../helpers/redeemPoints'
 
-const ButtonExampleAnimated = ({ amount, frontMessage, backMessage, id }) => (
+
+const ButtonExampleAnimated = ({ amount, frontMessage, backMessage, productId }) => (
 
     <div>
         <Button
@@ -11,14 +11,12 @@ const ButtonExampleAnimated = ({ amount, frontMessage, backMessage, id }) => (
             color="violet"
             inverted
             onClick={(e) => {
-                //  redeemPoints({ productId: id })
-                console.log("redimiendo on click");
+                console.log("redimiendo on click" + productId);
             }}
         >
             <Button.Content
                 visible
                 onClick={(e) => {
-                    // redeemPoints({ productId: id })
                     console.log("redimiendo content");
                 }}
             >{frontMessage}{amount}</Button.Content>

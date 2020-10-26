@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
-import ButtonAnimated from './Button'
+import useRedeemProducts from '../hooks/useRedeemProducts'
 
 function exampleReducer(state, action) {
     switch (action.type) {
@@ -22,7 +22,8 @@ function ModalExampleDimmer({
     titleFail,
     contentFail,
     buttonText,
-    status
+    status,
+    productId, points
 
 }) {
     const [state, dispatch] = React.useReducer(exampleReducer, {
@@ -30,12 +31,20 @@ function ModalExampleDimmer({
         dimmer: undefined,
     })
     const { open, dimmer } = state
+    // let message = "hola"
+    const [shouldFetch, setShouldFetch] = useState(false);
+    let  message  =  useRedeemProducts({ productId: productId, points: points, cost: cost, shouldFetch: shouldFetch });
+     console.log(message);
 
     return (
         <div>
             <Button
                 animated='fade'
-                onClick={() => dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })}
+                onClick={() => {
+                    dispatch({ type: 'OPEN_MODAL', dimmer: 'blurring' })
+                    // console.log("en modal");
+                    setShouldFetch(true)
+                }}
             >
                 <Button.Content visible>{frontMessageButtom} {cost}</Button.Content>
                 <Button.Content hidden>{backMessageButtom}</Button.Content>
@@ -66,7 +75,7 @@ function ModalExampleDimmer({
                     {
                         status === true
                             ?
-                            <Button positive onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
+                            <Button id={productId} positive onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
                                 {buttonText}
                             </Button>
                             :

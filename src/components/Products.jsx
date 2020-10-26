@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 
 import useFetchProducts from '../hooks/useFetchProducts';
 
 
-function Products({ category ,  points }) {
+function Products({ category, points }) {
 
     const { data: products, loading } = useFetchProducts("");
-    let categoryProducts;
-    if (category === "") {
-        categoryProducts = products;
-    } else {
-        categoryProducts = products.filter(product => product.category === category);
-        console.log(categoryProducts)
-        
-    }
+
+    const [categoryProducts, setcategoryProducts] = useState([])
+
+
+
+    useEffect(() => {
+        if (category === "" || category === undefined) {
+            setcategoryProducts(products)
+        } else {
+            setcategoryProducts(products.filter(product => product.category === category))
+        }
+    }, [category,points])
 
     return (
         <>
@@ -24,7 +28,7 @@ function Products({ category ,  points }) {
                 {
                     categoryProducts.map((product) => {
                         return (
-                            <Card 
+                            <Card
                                 category={product.category}
                                 product={product.name}
                                 pointsLeft={points}

@@ -8,11 +8,11 @@ import useFetchUser from '../hooks/useFetchUser';
 export const MenuExampleSecondary = (props) => {
 
     const { data: user } = useFetchUser(props.points);
+    
     const { name, points: userPoints } = user;
     useEffect(() => {
         props.setPoints(userPoints);
     }, [userPoints])
-
 
     const handlePoints = async (e, { value }) => {
 
@@ -32,7 +32,7 @@ export const MenuExampleSecondary = (props) => {
                 name='male'
             >
                 <Icon name='male' />
-                {name}
+                {name} 
             </Menu.Item>
             <Menu.Item
                 name='money bill alternate outline'

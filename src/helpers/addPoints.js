@@ -1,7 +1,7 @@
 
 export const addPoints = async ({ pts }) => {
     const url = 'https://coding-challenge-api.aerolab.co/user/points';
-    const bearer = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjU4MjNhZDc0MjM1MjAwMWVkOTA5YTQiLCJpYXQiOjE1OTk2MTE4MjF9.Dim4Cie-Odcpo-TO93tdmIuxec6tttl509zgwhMDOJQ`;
+    const bearer = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjk1ZThhNzUyNDk2NzAwMTlhMTBlYjIiLCJpYXQiOjE2MDM2NTk5NDN9.DapzljGWaSJ7t3EdgRncEn_zEGQCXx0mJDswyHbKZfQ`;
     const resp = await fetch(url,
         {
             // mode: 'no-cors',
@@ -16,7 +16,5 @@ export const addPoints = async ({ pts }) => {
         }
     )
     const data = await resp.json();
-
-    console.log("data,", data["New Points"]);
     return data["New Points"];
 }

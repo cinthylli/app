@@ -9,7 +9,7 @@ export default function useFetchProducts({category}) {
     });
 
     useEffect(() => {
-        getProducts(category)
+        getProducts()
             .then(products => {
                 setState({
                     data: products,

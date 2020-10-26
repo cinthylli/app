@@ -3,7 +3,7 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import Menu from './components/Menu.jsx'
 import Products from './components/Products.jsx'
-import Historico from './components/Historico.jsx'
+import Historic from './components/Historico.jsx'
 
 function App() {
 
@@ -30,7 +30,7 @@ function App() {
           category={category}
           points={points}
             /> : 
-            <Historico
+            <Historic
                 points={points}
             />
         }
