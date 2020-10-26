@@ -1,0 +1,5 @@
+section {
+    display: flexbox;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

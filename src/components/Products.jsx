@@ -6,16 +6,20 @@ import useFetchProducts from '../hooks/useFetchProducts';
 
 function Products({ category, points, setPoints }) {
 
-    const { data: products, loading } = useFetchProducts("");
-
-    const [categoryProducts, setcategoryProducts] = useState([])
-
+    let { data: products, loading } = useFetchProducts("");
+    
+    const [categoryProducts, setcategoryProducts] = useState(products)
+    
     useEffect(() => {
-        if (category === "" || category === undefined) {
-            setcategoryProducts(products)
-        } else {
-            setcategoryProducts(products.filter(product => product.category === category))
+        async function inicial() {
+            if (category === "" || category === undefined) {
+                setcategoryProducts(products)
+            } else {
+                setcategoryProducts(products.filter(product => product.category === category))
+            }
+            
         }
+        inicial();
     }, [category])
 
     const itemsPerPage = 16;
@@ -28,7 +32,7 @@ function Products({ category, points, setPoints }) {
         async function fetchData() {
             await setIndexOfFirstItem(itemsPerPage *  (currentPage-1));
             await setIndexOfLastItem(itemsPerPage *  (currentPage));
-            await setCurrentItems(categoryProducts.slice({indexOfFirstItem, indexOfLastItem}));
+            await setCurrentItems(categoryProducts.slice(indexOfFirstItem, indexOfLastItem));
             
         }
         fetchData();
@@ -54,40 +58,58 @@ function Products({ category, points, setPoints }) {
             {number}
           </li>
         );
-      });
+    });
+    
+    const styleSection = {
+        display: "flex",
+        flexWrap: "wrap",
+        
+    }
 
+    const styleCard = {
+        margin: "10px"
+    }
+
+    const styleList = {
+        listStyleType: "square",
+        display: "inline"
+    }
     return (
         <>
             <h1>{category || "Products"}</h1>
-
-            {console.log("category > ", category)}
+            {console.log("categoryProducts > ", categoryProducts)}
             {console.log("currentItems > ", currentItems)}
+
+            {/* {console.log("category > ", category)}
             {console.log("currentPage > ", currentPage)}
             {console.log("indexOfFirstItem > ", indexOfFirstItem)}
             {console.log("indexOfLastItem > ", indexOfLastItem)}
             
             {console.log("categoryProducts slide >>>>>>>> ",categoryProducts.slice(indexOfFirstItem,indexOfLastItem))}
-            {console.log("categoryProducts slide > ",categoryProducts.slice(16,32))}
+            {console.log("categoryProducts slide > ",categoryProducts.slice(16,32))} */}
             {loading && "cargando....."}
-            <section>
+            <section style={ styleSection}>
                 {
                     categoryProducts.slice(indexOfFirstItem,indexOfLastItem).map((product) => {
                         return (
-                            <Card
-                                category={product.category}
-                                product={product.name}
-                                pointsLeft={points}
-                                cost={product.cost}
-                                img={product.img.url}
-                                id={product._id}
-                                key={product._id}
-                                setPoints={setPoints}
-                            />
+                            <div style={ styleCard}>
+                                <Card
+                                    category={product.category}
+                                    product={product.name}
+                                    pointsLeft={points}
+                                    cost={product.cost}
+                                    img={product.img.url}
+                                    id={product._id}
+                                    key={product._id}
+                                    setPoints={setPoints}
+                                    
+                                />
+                            </div>
                         )
                     })
                 }
             </section>
-            <ul id="page-numbers">
+            <ul style={styleList}>
               {renderPageNumbers}
             </ul>
         </>
